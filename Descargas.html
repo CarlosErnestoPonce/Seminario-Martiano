@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargas · Obras de José Martí · Seminario Martiano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET Y VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-primary: #8b1a1a;
+            --red-dark: #5c0e0e;
+            --red-light: #b33a3a;
+            --red-bg: #fdf0ee;
+            --gold: #c49a6c;
+            --text-dark: #2c1e16;
+            --text-light: #f5ede6;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #fcf9f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: #ffffff;
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--red-primary);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .brand h1 {
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: var(--red-dark);
+        }
+
+        .brand h1 span {
+            font-weight: 700;
+            color: var(--red-primary);
+        }
+
+        .brand .sub {
+            font-size: 0.7rem;
+            color: #7a5a3a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red-primary);
+            transition: width 0.25s;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .main-nav a.active {
+            color: var(--red-primary);
+        }
+
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .main-nav a.cta {
+            background: var(--red-primary);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .main-nav a.cta::after {
+            display: none;
+        }
+
+        .main-nav a.cta:hover {
+            background: var(--red-dark);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(145deg, var(--red-dark) 0%, var(--red-primary) 60%, #a32b2b 100%);
+            color: #fff;
+            padding: 3.5rem 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0 3rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== SECCIÓN DE OBRAS ===== */
+        .section-title {
+            font-family: 'Georgia', serif;
+            font-size: 2rem;
+            color: var(--red-dark);
+            margin: 2.5rem 0 1.5rem 0;
+            font-weight: 400;
+            border-left: 6px solid var(--red-primary);
+            padding-left: 1rem;
+        }
+
+        .genre-intro {
+            color: #5a4a3a;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== TARJETAS DE DESCARGA ===== */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .download-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #eedfce;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .download-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        }
+
+        .download-card .badge {
+            display: inline-block;
+            background: var(--red-bg);
+            color: var(--red-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-bottom: 0.8rem;
+            align-self: flex-start;
+        }
+
+        .download-card h3 {
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            color: var(--red-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .download-card .meta {
+            font-size: 0.8rem;
+            color: #7a5a3a;
+            margin-bottom: 0.8rem;
+        }
+
+        .download-card .meta span {
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        .download-card .description {
+            color: #5a4a3a;
+            font-size: 0.95rem;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--red-primary);
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-download:hover {
+            background: var(--red-dark);
+            transform: scale(0.98);
+        }
+
+        .btn-download.outline {
+            background: transparent;
+            color: var(--red-primary);
+            border: 2px solid var(--red-primary);
+        }
+
+        .btn-download.outline:hover {
+            background: var(--red-bg);
+            color: var(--red-dark);
+            border-color: var(--red-dark);
+        }
+
+        /* ===== TABLA DE RECURSOS ADICIONALES ===== */
+        .resources-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .resources-table th,
+        .resources-table td {
+            border: 1px solid #eedfce;
+            padding: 0.75rem 1.2rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .resources-table th {
+            background: var(--red-bg);
+            color: var(--red-dark);
+            font-weight: 600;
+        }
+
+        .resources-table a {
+            color: var(--red-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resources-table a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== CITAS ===== */
+        .quote-block {
+            background: #ffffff;
+            border-left: 8px solid var(--red-primary);
+            padding: 1.8rem 2rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-block p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #3e2a1a;
+        }
+
+        .quote-block .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--red-dark);
+        }
+
+        /* ===== PIE DE PÁGINA ===== */
+        .main-footer {
+            background: var(--red-dark);
+            color: #f0e6dc;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #f0e6dc;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 800px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .main-nav {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+            .resources-table,
+            .resources-table tbody,
+            .resources-table tr,
+            .resources-table td {
+                display: block;
+                width: 100%;
+            }
+            .resources-table th {
+                display: none;
+            }
+            .resources-table td {
+                border: none;
+                border-bottom: 1px solid #eedfce;
+                position: relative;
+                padding-left: 40%;
+            }
+            .resources-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 35%;
+                font-weight: 600;
+                color: var(--red-dark);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .download-buttons {
+                flex-direction: column;
+            }
+            .btn-download {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-icon">JM</div>
+                <div>
+                    <h1>Seminario <span>Martí</span></h1>
+                    <div class="sub">Vigencia de un pensamiento liberador</div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="main.html">Inicio</a>
+                <a href="Biografia.html">Biografía</a>
+                <a href="#" class="active">Descargas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Obras literarias de José Martí</h2>
+                <p>Descarga gratuita de sus principales textos</p>
+                <p style="font-size: 1rem; opacity: 0.85;">Todos los archivos son de dominio público y están disponibles para uso académico.</p>
+            </div>
+        </section>
+
+        <!-- INTRODUCCIÓN -->
+        <p style="color: #5a4a3a; margin-bottom: 1.5rem;">
+            Esta sección pone a tu disposición las obras más representativas de José Martí, organizadas por género literario. Puedes descargar cada título en el formato que prefieras. También incluimos enlaces a bibliotecas digitales donde encontrar ediciones críticas y colecciones completas.
+        </p>
+
+        <!-- ===== POESÍA ===== -->
+        <h2 class="section-title">Poesía</h2>
+        <p class="genre-intro">La poesía martiana renovó el idioma español y sentó las bases del Modernismo. Sus versos son íntimos, sinceros y profundamente humanos.</p>
+
+        <div class="download-grid">
+            <div class="download-card">
+                <span class="badge">Poesía</span>
+                <h3>Ismaelillo</h3>
+                <div class="meta">
+                    <span>1882</span>
+                    <span>41 págs.</span>
+                </div>
+                <div class="description">Primer poemario dedicado a su hijo. Versos breves y tiernos que exploran la paternidad y la esperanza.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/Ismaelillo.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+
+            <div class="download-card">
+                <span class="badge">Poesía</span>
+                <h3>Versos Sencillos</h3>
+                <div class="meta">
+                    <span>1891</span>
+                    <span>29 págs.</span>
+                </div>
+                <div class="description">Obra cumbre de la poesía martiana. Incluye “Cultivo una rosa blanca” y “Yo soy un hombre sincero”.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/Versos sencillos de José Martí.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+
+            <div class="download-card">
+                <span class="badge">Poesía</span>
+                <h3>Versos Libres</h3>
+                <div class="meta">
+                    <span>1913 (póstumo)</span>
+                    <span>56 págs.</span>
+                </div>
+                <div class="description">Poemas escritos entre 1878 y 1882. Versos apasionados, filosóficos y de tono combativo.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/versos libres.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ENSAYO Y CRÓNICA ===== -->
+        <h2 class="section-title">Ensayos y crónicas</h2>
+        <p class="genre-intro">Martí fue un agudo observador de su tiempo. Sus ensayos y crónicas periodísticas son testimonios de su pensamiento político y su visión de América.</p>
+
+        <div class="download-grid">
+            <div class="download-card">
+                <span class="badge">Ensayo</span>
+                <h3>Nuestra América</h3>
+                <div class="meta">
+                    <span>1891</span>
+                    <span>24 págs.</span>
+                </div>
+                <div class="description">Manifiesto fundacional del antimperialismo latinoamericano. Una llamada a la unidad y a la identidad propia.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/Nuestra america.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+
+            <div class="download-card">
+                <span class="badge">Ensayo</span>
+                <h3>El presidio político en Cuba</h3>
+                <div class="meta">
+                    <span>1871</span>
+                    <span>23 págs.</span>
+                </div>
+                <div class="description">Denuncia de las atrocidades en las cárceles coloniales cubanas. Escrito durante su deportación a España.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/El presidio Politico en Cuba.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== LITERATURA INFANTIL ===== -->
+        <h2 class="section-title">Literatura infantil</h2>
+        <p class="genre-intro">Martí concibió <em>La Edad de Oro</em> como una revista para los niños de América, con cuentos, poemas y lecciones de vida.</p>
+
+        <div class="download-grid">
+            <div class="download-card">
+                <span class="badge">Infantil</span>
+                <h3>La Edad de Oro (4 números)</h3>
+                <div class="meta">
+                    <span>1889</span>
+                    <span>138 págs.</span>
+                </div>
+                <div class="description">Edición facsimilar de los cuatro números de la revista. Incluye “Los zapaticos de rosa”, “Meñique” y “Tres héroes”.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/Edad de Oro.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== OBRAS DE TEATRO ===== -->
+        <h2 class="section-title">Obras de teatro</h2>
+        <p class="genre-intro">Martí concibió multiples obras teatrales en su juventud, el juramento silencioso de un joven que se covertiria en apóstol</p>
+
+        <div class="download-grid">
+            <div class="download-card">
+                <span class="badge">Teatral</span>
+                <h3>Abdala</h3>
+                <div class="meta">
+                    <span>1869</span>
+                    <span>24 págs.</span>
+                </div>
+                <div class="description">Abdala trasciende su condición de texto literario para convertirse en un manifiesto político precoz y un espejo autobiográfico anticipado.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/Jose Marti - Abdala.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+        
+            <div class="download-card">
+                <span class="badge">Teatral</span>
+                <h3>Amor con amor se paga</h3>
+                <div class="meta">
+                    <span>1875</span>
+                    <span>29 págs.</span>
+                </div>
+                <div class="description">Amor con amor se paga Fue la obra de teatro de juventud de José Martí Pérez, escrita y llevada a escena en México en el Teatro Principal el 19 de diciembre de 1875.</div>
+                <div class="download-buttons">
+                    <a href="Descargas/Jose Marti - Amor con Amor se Paga.pdf" class="btn-download">PDF</a>
+                </div>
+            </div>
+        </div>
+         
+        
+
+        <!-- ===== RECURSOS ADICIONALES (TABLA) ===== -->
+        <!-- <h2 class="section-title">Recursos adicionales</h2>
+        <p style="color: #5a4a3a; margin-bottom: 1rem;">
+            Accede a ediciones completas, bibliotecas digitales y otros materiales de referencia.
+        </p>
+
+        <table class="resources-table">
+            <thead>
+                <tr>
+                    <th>Recurso</th>
+                    <th>Descripción</th>
+                    <th>Enlace</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Recurso">Obras Completas (28 tomos)</td>
+                    <td data-label="Descripción">Edición crítica del Centro de Estudios Martianos. Incluye poesía, ensayo, periodismo, cartas y documentos.</td>
+                    <td data-label="Enlace"><a href="#">Visitar</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Recurso">Epistolario martiano</td>
+                    <td data-label="Descripción">Más de 2.000 cartas recopiladas en cinco volúmenes. Fuente imprescindible para conocer su pensamiento íntimo.</td>
+                    <td data-label="Enlace"><a href="#">Visitar</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Recurso">Biblioteca Virtual Miguel de Cervantes</td>
+                    <td data-label="Descripción">Portal con ediciones digitales de la obra de Martí, estudios críticos y material audiovisual.</td>
+                    <td data-label="Enlace"><a href="#">Visitar</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Recurso">Archivo de la palabra (Cuba)</td>
+                    <td data-label="Descripción">Repositorio con grabaciones de conferencias, poemas y fragmentos de la obra martiana.</td>
+                    <td data-label="Enlace"><a href="#">Visitar</a></td>
+                </tr>
+            </tbody>
+        </table> -->
+
+        <!-- CITA -->
+        <div class="quote-block">
+            <p>“Los libros consuelan, calman, preparan, enriquecen y redimen”</p>
+            <div class="author">— José Martí, <em>La Edad de Oro</em> (1889)</div>
+        </div>
+
+
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p>&copy;2026 Seminario de Estudios Martianos | Carlos Ernesto Ortiz Ponce. Todos los derechos reservados</p>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> carlosernestortiz@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +53 5 592 4067</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

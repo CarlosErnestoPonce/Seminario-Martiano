@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio · Seminario José Martí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET Y VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-primary: #8b1a1a;
+            --red-dark: #5c0e0e;
+            --red-light: #b33a3a;
+            --red-bg: #fdf0ee;
+            --gold: #c49a6c;
+            --text-dark: #2c1e16;
+            --text-light: #f5ede6;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #fcf9f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER (sin sidebar) ===== */
+        .main-header {
+            background: #ffffff;
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--red-primary);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .brand h1 {
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: var(--red-dark);
+        }
+
+        .brand h1 span {
+            font-weight: 700;
+            color: var(--red-primary);
+        }
+
+        .brand .sub {
+            font-size: 0.7rem;
+            color: #7a5a3a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red-primary);
+            transition: width 0.25s;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+         .main-nav a.active {
+            color: var(--red-primary);
+        }
+
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .main-nav a.cta {
+            background: var(--red-primary);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .main-nav a.cta::after {
+            display: none;
+        }
+
+        .main-nav a.cta:hover {
+            background: var(--red-dark);
+        }
+
+        /* ===== HERO (con fondo rojo) ===== */
+        .hero {
+            background: linear-gradient(145deg, var(--red-dark) 0%, var(--red-primary) 60%, #a32b2b 100%);
+            color: #fff;
+            padding: 4rem 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0 3rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-family: 'Georgia', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--red-dark);
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            background: #f5ede6;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        /* ===== SECCIÓN DE TARJETAS ===== */
+        .section-title {
+            font-family: 'Georgia', serif;
+            font-size: 2rem;
+            color: var(--red-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            border-left: 6px solid var(--red-primary);
+            padding-left: 1rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #eedfce;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        }
+
+        .card .badge {
+            display: inline-block;
+            background: var(--red-bg);
+            color: var(--red-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-bottom: 0.8rem;
+        }
+
+        .card h3 {
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
+            color: var(--red-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #5a4a3a;
+            font-size: 0.95rem;
+        }
+
+        .card .link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--red-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .card .link:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ESTADÍSTICAS ===== */
+        .stats-section {
+            background: var(--red-bg);
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            margin: 2.5rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            border: 1px solid #e6c8b8;
+        }
+
+        .stat-item .number {
+            font-family: 'Georgia', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--red-dark);
+        }
+
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: #7a5a3a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== CITAS ===== */
+        .quote-block {
+            background: #ffffff;
+            border-left: 8px solid var(--red-primary);
+            padding: 1.8rem 2rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-block p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #3e2a1a;
+        }
+
+        .quote-block .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--red-dark);
+        }
+
+        /* ===== PIE DE PÁGINA ===== */
+        .main-footer {
+            background: var(--red-dark);
+            color: #f0e6dc;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #f0e6dc;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 800px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .main-nav {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .stats-section {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER (sin sidebar) ===== -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-icon">JM</div>
+                <div>
+                    <h1>Seminario <span>Martí</span></h1>
+                    <div class="sub">Vigencia de un pensamiento liberador</div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="#"class="active">Inicio</a>
+                <a href="Biografia.html">Biografía</a>
+                <a href="#">Obra</a>
+                <a href="Descargas.html">Descargas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="container">
+
+        <!-- HERO con fondo rojo -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>José Martí<br>la palabra como liberación</h2>
+                <p>Explora la vida, obra y pensamiento del Apóstol de Cuba en este seminario internacional.</p>
+            </div>
+        </section>
+
+        <!-- TARJETAS DE CONTENIDO -->
+        <h2 class="section-title">Temas del seminario</h2>
+        <div class="card-grid">
+            <div class="card">
+                <span class="badge">Biografía</span>
+                <h3>Vida y contexto</h3>
+                <p>Recorrido por las etapas fundamentales de Martí: desde su nacimiento en La Habana hasta su caída en Dos Ríos.</p>
+                <a href="#" class="link">Ver más →</a>
+            </div>
+            <div class="card">
+                <span class="badge">Obra literaria</span>
+                <h3>Poesía y ensayo</h3>
+                <p>Análisis de <em>Versos Sencillos</em>, <em>Nuestra América</em>, <em>La Edad de Oro</em> y sus crónicas periodísticas.</p>
+                <a href="#" class="link">Ver más →</a>
+            </div>
+            <div class="card">
+                <span class="badge">Pensamiento</span>
+                <h3>Filosofía política</h3>
+                <p>El antimperialismo, la unidad latinoamericana, la educación como base de la libertad y su vigencia actual.</p>
+                <a href="#" class="link">Ver más →</a>
+            </div>
+            <div class="card">
+                <span class="badge">Sesiones</span>
+                <h3>Próximos encuentros</h3>
+                <p>Calendario de conferencias, talleres y mesas redondas con especialistas internacionales.</p>
+                <a href="#" class="link">Ver más →</a>
+            </div>
+        </div>
+
+        <!-- ESTADÍSTICAS -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <div class="number">28</div>
+                <div class="label">Volúmenes de obras completas</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">1200+</div>
+                <div class="label">Artículos periodísticos</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">6</div>
+                <div class="label">Idiomas en los que se traduce su obra</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">1895</div>
+                <div class="label">Año de su caída en combate</div>
+            </div>
+        </section>
+
+        <!-- CITA DESTACADA -->
+        <div class="quote-block">
+            <p>“Ser culto es el único modo de ser libre. Pero, común, como el pan, echo el amor de las ideas, y en el regazo de la literatura, como un niño mimado, duermo el sueño de oro de la creación.”</p>
+            <div class="author">— José Martí, fragmento de “Mis versos” (1891)</div>
+        </div>
+
+        <!-- LLAMADA A LA ACCIÓN (opcional) -->
+        <div style="text-align: center; margin: 2.5rem 0;">
+            <a href="#" style="background: var(--red-primary); color: #fff; padding: 0.9rem 3rem; border-radius: 60px; text-decoration: none; font-weight: 600; display: inline-block; transition: background 0.2s;" onmouseover="this.style.background='#5c0e0e'" onmouseout="this.style.background='#8b1a1a'">
+                Inscríbete al seminario
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p>Seminario Internacional “José Martí: vigencia de un pensamiento liberador” · 2025</p>
+            <div class="footer-links">
+                <a href="#">Acerca de</a>
+                <a href="#">Programa</a>
+                <a href="#">Contacto</a>
+                <a href="#">Materiales</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

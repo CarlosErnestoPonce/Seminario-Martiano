@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biografía · José Martí · Seminario Martiano</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== RESET Y VARIABLES ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --red-primary: #8b1a1a;
+        --red-dark: #5c0e0e;
+        --red-light: #b33a3a;
+        --red-bg: #fdf0ee;
+        --gold: #c49a6c;
+        --text-dark: #2c1e16;
+        --text-light: #f5ede6;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 20px;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background: #fcf9f5;
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* ===== HEADER (sin sidebar) ===== */
+      .main-header {
+        background: #ffffff;
+        padding: 1rem 0;
+        border-bottom: 3px solid var(--red-primary);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .brand-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--red-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.4rem;
+        font-family: "Georgia", serif;
+      }
+
+      .brand h1 {
+        font-family: "Georgia", serif;
+        font-weight: 400;
+        font-size: 1.6rem;
+        color: var(--red-dark);
+      }
+
+      .brand h1 span {
+        font-weight: 700;
+        color: var(--red-primary);
+      }
+
+      .brand .sub {
+        font-size: 0.7rem;
+        color: #7a5a3a;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .main-nav a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+        position: relative;
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--red-primary);
+        transition: width 0.25s;
+      }
+
+      .main-nav a:hover::after {
+        width: 100%;
+      }
+
+      .main-nav a.active {
+        color: var(--red-primary);
+      }
+
+      .main-nav a.active::after {
+        width: 100%;
+      }
+
+      .main-nav a.cta {
+        background: var(--red-primary);
+        color: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 40px;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+
+      .main-nav a.cta::after {
+        display: none;
+      }
+
+      .main-nav a.cta:hover {
+        background: var(--red-dark);
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        background: linear-gradient(
+          145deg,
+          var(--red-dark) 0%,
+          var(--red-primary) 60%,
+          #a32b2b 100%
+        );
+        color: #fff;
+        padding: 3.5rem 2rem;
+        border-radius: var(--radius);
+        margin: 2rem 0 3rem 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        max-width: 700px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-content h2 {
+        font-family: "Georgia", serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-content p {
+        font-size: 1.15rem;
+        opacity: 0.9;
+        margin-bottom: 0.5rem;
+      }
+
+      /* ===== SECCIÓN BIOGRÁFICA ===== */
+      .section-title {
+        font-family: "Georgia", serif;
+        font-size: 2rem;
+        color: var(--red-dark);
+        margin: 2.5rem 0 1.5rem 0;
+        font-weight: 400;
+        border-left: 6px solid var(--red-primary);
+        padding-left: 1rem;
+      }
+
+      .section-subtitle {
+        font-family: "Georgia", serif;
+        font-size: 2rem;
+        color: var(--red-dark);
+        margin: 2.5rem 0 1.5rem 0;
+        font-weight: 400;
+        padding-left: 1rem;
+      }
+
+      .bio-text {
+        text-align: justify;
+        margin-bottom: 1.2rem;
+        color: #3e2a1a;
+      }
+
+      /* ===== TARJETAS ===== */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0 3rem 0;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        border: 1px solid #eedfce;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      .card .badge {
+        display: inline-block;
+        background: var(--red-bg);
+        color: var(--red-primary);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 0.2rem 0.8rem;
+        border-radius: 30px;
+        margin-bottom: 0.8rem;
+      }
+
+      .card h3 {
+        font-family: "Georgia", serif;
+        font-size: 1.3rem;
+        color: var(--red-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        color: #5a4a3a;
+        font-size: 0.95rem;
+      }
+
+      /* ===== LÍNEA DE TIEMPO ===== */
+      .timeline-block {
+        background: #ffffff;
+        border-radius: var(--radius);
+        padding: 1.5rem 2rem;
+        box-shadow: var(--shadow);
+        border: 1px solid #eedfce;
+        margin: 2rem 0;
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 1.5rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #f0e4d4;
+      }
+
+      .timeline-item:last-child {
+        border-bottom: none;
+      }
+
+      .timeline-year {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--red-primary);
+        min-width: 90px;
+        font-family: "Georgia", serif;
+      }
+
+      .timeline-desc {
+        color: #3e2a1a;
+      }
+
+      .timeline-desc strong {
+        color: var(--red-dark);
+      }
+
+      /* ===== CITAS ===== */
+      .quote-block {
+        background: #ffffff;
+        border-left: 8px solid var(--red-primary);
+        padding: 1.8rem 2rem;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        margin: 2.5rem 0;
+        box-shadow: var(--shadow);
+      }
+
+      .quote-block p {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: #3e2a1a;
+      }
+
+      .quote-block .author {
+        margin-top: 0.8rem;
+        font-weight: 600;
+        color: var(--red-dark);
+      }
+
+      /* ===== PIE DE PÁGINA ===== */
+      .main-footer {
+        background: var(--red-dark);
+        color: #f0e6dc;
+        padding: 2.5rem 0;
+        margin-top: 3rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .footer-inner p {
+        font-size: 0.85rem;
+        opacity: 0.8;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        color: #f0e6dc;
+        text-decoration: none;
+        font-size: 0.85rem;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 800px) {
+        .header-inner {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .main-nav {
+          justify-content: center;
+          gap: 1rem;
+        }
+        .hero-content h2 {
+          font-size: 2.2rem;
+        }
+        .hero {
+          padding: 2.5rem 1.5rem;
+        }
+        .container {
+          padding: 0 1rem;
+        }
+        .timeline-item {
+          flex-direction: column;
+          gap: 0.3rem;
+        }
+        .timeline-year {
+          min-width: auto;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .hero-content h2 {
+          font-size: 1.8rem;
+        }
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-icon">JM</div>
+          <div>
+            <h1>Seminario <span>Martí</span></h1>
+            <div class="sub">Vigencia de un pensamiento liberador</div>
+          </div>
+        </div>
+        <nav class="main-nav">
+          <a href="main.html">Inicio</a>
+          <a href="#" class="active">Biografía</a>
+          <a href="Descargas.html">Descargas</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Biografía de José Martí</h2>
+          <p>1853 – 1895 · La Habana – Dos Ríos</p>
+          <p style="font-size: 1rem; opacity: 0.85">
+            Poeta, periodista, filósofo y revolucionario cubano. Su vida y obra
+            son faro de la identidad latinoamericana.
+          </p>
+        </div>
+      </section>
+
+      <!-- INTRODUCCIÓN -->
+      <div class="bio-text">
+        <strong>José Julián Martí Pérez</strong> nació el 28 de enero de 1853 en
+        La Habana, en el seno de una familia humilde de origen español. Desde
+        muy joven mostró un talento literario excepcional y una profunda
+        sensibilidad social. Su corta pero intensa vida estuvo marcada por el
+        exilio, la prisión, la lucha independentista y la creación de una obra
+        literaria que lo consagra como uno de los grandes escritores de habla
+        hispana. Murió en combate el 19 de mayo de 1895 en Dos Ríos, Cuba,
+        convertido en símbolo de libertad para toda América.
+      </div>
+
+      <!-- TARJETAS DE ETAPAS -->
+      <h2 class="section-title">Etapas fundamentales</h2>
+      <h3 class="section-subtitle">Infancia y juventud</h3>
+      <p>
+        José Julián Martí Pérez nació en La Habana, capital de la capitanía
+        general de Cuba, que entonces formaba parte de la colonia española. Su
+        padre era Mariano Martí, natural de la ciudad española de Valencia, y la
+        madre, la también española Leonor Pérez Cabrera, de Santa Cruz de
+        Tenerife, en las islas Canarias. A los cuatro años de edad, se mudó con
+        su familia a Valencia, y dos años más tarde (cuando Martí tenía 6 años)
+        la familia regresó a Cuba. Placa en la plaza del Miracle del Mocadoret,
+        en la ciudad de Valencia (España), que indica la casa donde vivió José
+        Martí entre los 4 y los 6 años de edad. En 1866 se matriculó en el
+        Instituto de Segunda Enseñanza de La Habana. Ingresó también en la clase
+        de Dibujo Elemental en la Escuela Profesional de Pintura y Escultura de
+        La Habana. El 4 de octubre de 1869, durante la primera guerra de
+        Independencia cubana (1868-1878), al pasar una escuadra del Primer
+        Batallón de Voluntarios por la calle Industrias n.º 122, donde residían
+        los Valdés Domínguez, de la vivienda se oyen risas y los voluntarios
+        toman esto como una provocación. Regresan en la noche y someten la casa
+        a un minucioso registro. Entre la correspondencia encuentran una carta
+        dirigida a Carlos de Castro y Castro, compañero del colegio al que, por
+        haberse alistado como voluntario en el ejército español para combatir a
+        los independentistas, calificaban de apóstata. Por tal razón, el 21 de
+        octubre de 1869 Martí ingresa en la Cárcel Nacional acusado de traición
+        por escribir esa carta, junto a su amigo Fermín Valdés Domínguez. El 4
+        de marzo de 1870, Martí fue condenado a seis años de prisión, pena
+        posteriormente conmutada por el destierro a la Isla de Pinos (actual
+        Isla de la Juventud), al suroeste de la principal isla cubana. Llega
+        allí el 13 de octubre. El 18 de diciembre sale hacia La Habana y el 15
+        de enero de 1871, por gestiones realizadas por sus padres, logró ser
+        deportado a España. Allá comienza a cursar estudios en las universidades
+        de Madrid y Zaragoza, donde se gradúa de licenciado en Derecho Civil y
+        en Filosofía y Letras. Residió en Zaragoza desde mayo de 1873 hasta
+        noviembre de 1874, periodo en el que realizó su último año para
+        conseguir la titulación de Bachillerato en el Instituto Goya y obtuvo
+        los títulos de licenciado en Derecho y en Filosofía y Letras por la
+        Universidad de Zaragoza. Aunque se licenció con sobresaliente, Martí no
+        pudo recoger sus títulos porque no tenía dinero para que se los
+        expidieran. La Universidad de Zaragoza corrigió esa situación a título
+        póstumo en 1995.[1] Durante su estancia en Zaragoza, José Martí colaboró
+        en el Diario de Avisos de Zaragoza,[2] publicación de tendencia
+        republicana dirigida por Calixto Ariño. Martí asistió en Zaragoza a una
+        sociedad en plena ebullición política con constantes enfrentamientos
+        entre monárquicos y republicanos, la aparición de un incipiente
+        movimiento obrero organizado, la insurrección carlista y la revolución
+        cantonalista. De España se traslada a París por breve tiempo. Pasa por
+        Nueva York y llega a Veracruz el 8 de febrero de 1875, donde se reúne
+        con su familia. En México entabla relaciones con Manuel Mercado y conoce
+        a Carmen Zayas Bazán, la cubana de Camagüey que posteriormente sería su
+        esposa. Del 2 de enero al 24 de febrero de 1877 estuvo de incógnito en
+        La Habana como Julián Pérez. Al llegar a Guatemala trabaja en la Escuela
+        Normal Central como catedrático de Literatura y de Historia de la
+        Filosofía. Retorna a México para contraer matrimonio con Carmen el 20 de
+        diciembre de 1877. Regresa a Guatemala a inicios de 1878.
+      </p>
+      <h3 class="section-subtitle">Segunda deportación</h3>
+      <p>
+        En 1878 vuelve a Cuba, el 31 de agosto, para radicarse en La Habana, y
+        el 22 de noviembre nace José Francisco, su único hijo. Comenzó sus
+        labores conspirativas figurando entre los fundadores del Club Central
+        Revolucionario Cubano, del cual fue elegido vicepresidente el 18 de
+        marzo de 1879. Posteriormente el Comité Revolucionario Cubano, radicado
+        en Nueva York bajo la presidencia del mayor general Calixto García, lo
+        nombró subdelegado en la isla. En el bufete de su amigo Nicolás Azcárate
+        conoce a Juan Gualberto Gómez. Entre el 24 y el 26 de agosto de 1879 se
+        produce un nuevo levantamiento en las cercanías de Santiago de Cuba. El
+        17 de septiembre Martí es detenido y deportado nuevamente a España, el
+        25 de septiembre de 1879, por sus vínculos con la conocida como Guerra
+        Chiquita, liderada por el citado general García. Al llegar a Nueva York,
+        se establece en la casa de huéspedes de Manuel Mantilla y su esposa,
+        Carmen Millares.
+      </p>
+      <h3 class="section-subtitle">El Partido Revolucionario Cubano</h3>
+      <p>
+        Martí logró llevarse consigo a su esposa e hijo el 3 de marzo de 1880.
+        Permanecen juntos hasta el 21 de octubre, en que Carmen y José Francisco
+        regresan a Cuba. Una semana después resultó elegido vocal del Comité
+        Revolucionario Cubano, del cual asumió la presidencia al sustituir a
+        García, quien había partido hacia Cuba para incorporarse a la fallida
+        Guerra Chiquita.Entre 1880 y 1890 Martí alcanzaría renombre en América a
+        través de artículos y crónicas que enviaba desde Nueva York a
+        importantes periódicos: La Opinión Nacional de Caracas, La Nación de
+        Buenos Aires y El Partido Liberal de México. Posteriormente decide
+        buscar mejor acomodo en Venezuela, a donde llega el 20 de enero de 1881.
+        En Caracas fundó la Revista Venezolana, de la que pudo editar solo dos
+        números. En el segundo número, Martí escribe un notable ensayo sobre el
+        destacado intelectual Cecilio Acosta que disgusta al presidente Guzmán
+        Blanco, motivo suficiente para ser expulsado del país. En Nueva York
+        trabajó para la casa editorial Appleton como editor y traductor. A
+        mediados de 1882 reinició la labor de reorganizar a los revolucionarios
+        (los partidarios de la independencia total de Cuba de la metrópoli
+        española), comunicándoselo mediante cartas a Máximo Gómez Báez y Antonio
+        Maceo Grajales. El 2 de octubre de 1884 se reúne por primera vez con
+        ambos líderes y comienza a colaborar en un plan insurreccional diseñado
+        y dirigido por los generales Gómez y Maceo. Luego se separó del
+        movimiento por estar en desacuerdo con los métodos de dirección
+        empleados y las consecuencias que tendrían sobre la futura república
+        cubana, según manifestó. El 30 de noviembre de 1887 fundó una Comisión
+        Ejecutiva, de la cual fue elegido presidente, encargada de dirigir las
+        actividades organizativas de los revolucionarios. Entre 1887 y 1892,
+        Martí se desempeñó como cónsul de Uruguay en Nueva York. En enero de
+        1892 redactó las Bases y los Estatutos del Partido Revolucionario Cubano
+        y el 14 de marzo fundó el periódico Patria, órgano oficial del Partido.
+        El 8 de abril de 1892 resultó elegido delegado de esa organización, cuya
+        constitución fue proclamada dos días después, el 10 de abril de 1892.
+      </p>
+      <h3 class="section-subtitle">Plan de la Fernandina</h3>
+      <p>
+        En los años 1893 y 1894 recorrió varios países de América y ciudades de
+        Estados Unidos, uniendo a los principales jefes de la guerra de los Diez
+        Años entre sí y con los más jóvenes, y acopiando recursos para la nueva
+        contienda. Desde mediados de 1894 aceleró los preparativos del Plan
+        Fernandina, con el cual pretendía promover una guerra corta, sin grandes
+        desgastes para los cubanos. El 8 de diciembre de 1894 redactó y firmó,
+        conjuntamente con los coroneles Mayía Rodríguez (en representación de
+        Máximo Gómez) y Enrique Collazo (en representación de los patriotas de
+        la isla), el plan de alzamiento en Cuba. El Plan Fernandina fue
+        descubierto e incautadas las naves con las cuales se iba a ejecutar. A
+        pesar del gran revés que ello significó, Martí decidió seguir adelante
+        con los planes de pronunciamientos armados en la Isla, siendo apoyado
+        por todos los principales jefes de las guerras anteriores.
+      </p>
+      <h3 class="section-subtitle">Levantamiento de 1985</h3>
+      <p>
+        El 29 de enero de 1895, junto con Mayía y Collazo, firmó la orden de
+        alzamiento y la envió a Juan Gualberto Gómez para su ejecución. Partió
+        de inmediato de Nueva York a Montecristi, en República Dominicana, donde
+        lo esperaba Máximo Gómez, con quien firmó el 25 de marzo de 1895 un
+        documento conocido como Manifiesto de Montecristi, programa de la nueva
+        guerra. Ambos líderes llegan a Cuba el 11 de abril de 1895, por Playitas
+        de Cajobabo, Baracoa, al sureste de la antigua provincia de Oriente.
+        Tres días después del desembarco, hicieron contacto con las fuerzas del
+        comandante Félix Ruenes. El 15 de abril de 1895 los jefes allí reunidos
+        bajo la dirección de Gómez, acordaron conferir a Martí el grado de mayor
+        general por sus méritos y servicios prestados. El 28 de abril de 1895,
+        en el campamento de Vuelta Corta, en Guantánamo (extremo este de la
+        provincia de Oriente), junto con Gómez firmó la circular «Política de
+        guerra». Envió mensajes a los jefes indicándoles que debían enviar un
+        representante a una asamblea de delegados para elegir un gobierno en
+        breve tiempo. El 5 de mayo de 1895 tuvo lugar la reunión de La Mejorana
+        con Gómez y Maceo, donde se discutió la estrategia a seguir. El 14 de
+        mayo de 1895 firmó la «Circular a los jefes y oficiales del Ejército
+        Libertador», último de los documentos organizativos de la guerra, la que
+        elaboró también con Máximo Gómez.
+      </p>
+      <p style="margin-top: 10px">El día 18 de mayo, en el Campamento de Dos Ríos, Martí escribe su última carta a su amigo Manuel Mercado, ese documento se le conoce como su testamento político, en un fragmento de la carta Martí expresa:</p>
+      <div class="quote-block">
+        <p style="font-size: 17px;">“... ya estoy todos los días en peligro de dar mi vida por mi país, y por mi deber —puesto que lo entiendo y tengo ánimos con que realizarlo— de impedir a tiempo con la independencia de Cuba que se extiendan por las Antillas los Estados Unidos y caigan, con esa fuerza más, sobre nuestras tierras de América. Cuanto hice hasta hoy, y haré, es para eso. En silencio ha tenido que ser, y como indirectamente, porque hay cosas que para lograrlas han de andar ocultas...”</p>
+      </div>
+      <h3 class="section-subtitle">Muerte</h3>
+      <p>El 19 de mayo de 1895 una columna española se desplegó en la zona rural de Dos Ríos (que no era una aldea sino la confluencia de los ríos Cauto y Contramaestre), cerca de Palma Soriano, donde acampaban los cubanos. Martí marchaba entre Gómez y el mayor general Bartolomé Masó. Al llegar al lugar de la acción, Gómez le indicó detenerse y permanecer en el lugar acordado. No obstante, en el transcurso del combate, se separó de las fuerzas cubanas. Martí cabalgó, sin saberlo, hacia un grupo de españoles ocultos en la maleza y fue alcanzado por tres disparos que le provocaron heridas mortales. Su cadáver no pudo ser rescatado por los mambises (soldados cubanos). Tras varios entierros, fue finalmente sepultado el día 27, en el nicho número 134 de la galería sur del cementerio de Santa Ifigenia, en Santiago de Cuba.</p>
+      <p style="margin-top: 10px;">El periódico La Correspondencia de España, en su edición del viernes 24 de mayo de 1895, narraba así su muerte:</p>
+      <div class="quote-block">
+        <p style="font-size: 17px;">“La columna de Sandoval que tuvo el encuentro con los insurrectos cerca del rio Contramaestre, la formaban unos 500 hombres, con fuerzas del segundo y novenos batallones peninsulares y un escuadrón de caballería de Hernán Cortés. Fuerzas de caballería del regimiento de Hernán Cortés, aprehendió a un espía que llevaba cartas para Martí y Máximo Gómez de Maceo. Súpose por el espía que varias partidas reunidas, formando un total de 800 jinetes, estaban en el poblado de Dos Ríos. Salió de seguida para aquel punto la columna mandada por el coronel Sandoval, la cual caminó tan velozmente y tomando tantas precauciones para no ser divisada, que cayó sobre los insurrectos sin darles tiempo más que para aceptar atropelladamente el combate. El combate duró dos horas. Martí, que viendo a los suyos vacilar les arengaba revólver en mano, cayó herido por dos balazos, uno en el cuello y otro en el pecho, que le disparó con admirable puntería el práctico Oliva. El cadáver de Martí será embalsamado y conducido a Santiago, a fin de convencer a la gente de la certeza de haber sido muerto tan renombrado jefe insurrecto.”</p>
+      </div>
+      <!--cards-->
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">1853–1869</span>
+          <h3>Infancia y juventud</h3>
+          <p>
+            Nacimiento en La Habana. Estudios en el colegio de San Rafael y
+            luego en el de San Pablo, donde conoce a su maestro Félix Varela. A
+            los 16 años funda el periódico <em>La Patria Libre</em>.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">1869–1871</span>
+          <h3>Prisión y deportación</h3>
+          <p>
+            Condenado a 6 años de prisión por sus ideas independentistas.
+            Trabaja en las canteras de San Lázaro. Deportado a España en 1871,
+            donde estudia Derecho y Filosofía.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">1875–1880</span>
+          <h3>México, Guatemala y Cuba</h3>
+          <p>
+            Viaja por México y Guatemala, donde se desempeña como profesor.
+            Regresa a Cuba bajo amnistía en 1878, pero es desterrado nuevamente
+            en 1879.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">1880–1895</span>
+          <h3>Nueva York y la guerra</h3>
+          <p>
+            Establecido en Nueva York, despliega una intensa actividad
+            periodística y política. Funda el Partido Revolucionario Cubano
+            (1892) y organiza la Guerra Necesaria (1895).
+          </p>
+        </div>
+      </div>
+
+      <!-- LÍNEA DE TIEMPO DETALLADA -->
+      <h2 class="section-title">Cronología vital</h2>
+      <div class="timeline-block">
+        <div class="timeline-item">
+          <div class="timeline-year">1853</div>
+          <div class="timeline-desc">
+            <strong>28 de enero:</strong> Nace en La Habana, en la calle Paula.
+            Hijo de Mariano Martí y Leonor Pérez.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1869</div>
+          <div class="timeline-desc">
+            Publica <em>El Diablo Cojuelo</em> y es arrestado por infidencia.
+            Condenado a 6 años de prisión.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1871</div>
+          <div class="timeline-desc">
+            Deportado a España. Estudia en Madrid y Zaragoza. Escribe
+            <em>El presidio político en Cuba</em>.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1875</div>
+          <div class="timeline-desc">
+            Viaja a México y Guatemala. Se casa con Carmen Zayas Bazán (1877).
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1880</div>
+          <div class="timeline-desc">
+            Se instala definitivamente en Nueva York. Inicia su colaboración con
+            <em>La Nación</em> (Buenos Aires).
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1882</div>
+          <div class="timeline-desc">
+            Publica <em>Ismaelillo</em>, su primer libro de poemas.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1889</div>
+          <div class="timeline-desc">
+            Fundación de la revista <em>La Edad de Oro</em>, dedicada a los
+            niños de América.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1891</div>
+          <div class="timeline-desc">
+            Escribe <em>Versos Sencillos</em> y publica el ensayo
+            <em>Nuestra América</em>.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1892</div>
+          <div class="timeline-desc">
+            Fundación del Partido Revolucionario Cubano en Cayo Hueso (Key
+            West).
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1895</div>
+          <div class="timeline-desc">
+            Desembarca en Cuba el 11 de abril. Muere en combate el 19 de mayo en
+            Dos Ríos.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN DE LEGADO (con tarjetas) -->
+      <h2 class="section-title">Legado y trascendencia</h2>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">Literario</span>
+          <h3>Iniciador del Modernismo</h3>
+          <p>
+            Su poesía y prosa renovaron el idioma español e influyeron en Rubén
+            Darío y toda la poesía hispanoamericana del siglo XX.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">Político</span>
+          <h3>Pensamiento antimperialista</h3>
+          <p>
+            <em>Nuestra América</em> sigue siendo una referencia clave para
+            entender la identidad latinoamericana y la resistencia al dominio
+            externo.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">Educativo</span>
+          <h3>Educación liberadora</h3>
+          <p>
+            “Ser culto es el único modo de ser libre” – su concepto de educación
+            como herramienta de emancipación social.
+          </p>
+        </div>
+      </div>
+
+      <!-- CITA -->
+      <div class="quote-block">
+        <p>“Trincheras de ideas valen más que trincheras de piedras.”</p>
+        <div class="author">— José Martí, <em>Nuestra América</em> (1891)</div>
+      </div>
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p>&copy;2026 Seminario de Estudios Martianos | Carlos Ernesto Ortiz Ponce. Todos los derechos reservados</p>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> carlosernestortiz@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +53 5 592 4067</p>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>
