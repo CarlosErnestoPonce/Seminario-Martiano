@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ideología · José Martí · Seminario Martiano</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET Y VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-primary: #8b1a1a;
+            --red-dark: #5c0e0e;
+            --red-light: #b33a3a;
+            --red-bg: #fdf0ee;
+            --gold: #c49a6c;
+            --text-dark: #2c1e16;
+            --text-light: #f5ede6;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: #fcf9f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: #ffffff;
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--red-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+            font-family: "Georgia", serif;
+        }
+
+        .brand h1 {
+            font-family: "Georgia", serif;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: var(--red-dark);
+        }
+
+        .brand h1 span {
+            font-weight: 700;
+            color: var(--red-primary);
+        }
+
+        .brand .sub {
+            font-size: 0.7rem;
+            color: #7a5a3a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red-primary);
+            transition: width 0.25s;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .main-nav a.active {
+            color: var(--red-primary);
+        }
+
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .main-nav a.cta {
+            background: var(--red-primary);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .main-nav a.cta::after {
+            display: none;
+        }
+
+        .main-nav a.cta:hover {
+            background: var(--red-dark);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(145deg, var(--red-dark) 0%, var(--red-primary) 60%, #a32b2b 100%);
+            color: #fff;
+            padding: 3.5rem 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0 3rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-family: "Georgia", serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== SECCIONES ===== */
+        .section-title {
+            font-family: "Georgia", serif;
+            font-size: 2rem;
+            color: var(--red-dark);
+            margin: 2.5rem 0 1.5rem 0;
+            font-weight: 400;
+            border-left: 6px solid var(--red-primary);
+            padding-left: 1rem;
+        }
+
+        .section-subtitle {
+            font-family: "Georgia", serif;
+            font-size: 1.5rem;
+            color: var(--red-dark);
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 400;
+            padding-left: 1rem;
+        }
+
+        .bio-text {
+            text-align: justify;
+            margin-bottom: 1.2rem;
+            color: #3e2a1a;
+        }
+
+        /* ===== TARJETAS (se mantienen para la sección de ejes) ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #eedfce;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .card .badge {
+            display: inline-block;
+            background: var(--red-bg);
+            color: var(--red-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-bottom: 0.8rem;
+        }
+
+        .card h3 {
+            font-family: "Georgia", serif;
+            font-size: 1.3rem;
+            color: var(--red-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #5a4a3a;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CITAS ===== */
+        .quote-block {
+            background: #ffffff;
+            border-left: 8px solid var(--red-primary);
+            padding: 1.8rem 2rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-block p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #3e2a1a;
+        }
+
+        .quote-block .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--red-dark);
+        }
+
+        /* ===== PIE DE PÁGINA ===== */
+        .main-footer {
+            background: var(--red-dark);
+            color: #f0e6dc;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-contact {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+        }
+
+        .footer-contact a {
+            color: #f0e6dc;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 800px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .main-nav {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-contact {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-icon">JM</div>
+                <div>
+                    <h1>Seminario <span>Martí</span></h1>
+                    <div class="sub">Vigencia de un pensamiento liberador</div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="main.html">Inicio</a>
+                <a href="biografia.html">Biografía</a>
+                <a href="#" class="active">Ideología</a>
+                <a href="Linea del tiempo.html">Línea de tiempo</a>
+                <a href="Descargas.html">Descargas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Ideología y pensamiento de José Martí</h2>
+                <p>Una filosofía de libertad, justicia, educación y soberanía que aún ilumina el camino de América Latina.</p>
+                <p style="font-size: 1rem; opacity: 0.85;">Antimperialista, humanista y visionario, su pensamiento trasciende su época y dialoga con los desafíos del siglo XXI.</p>
+            </div>
+        </section>
+
+        <!-- INTRODUCCIÓN -->
+        <div class="bio-text">
+            El pensamiento de José Martí es una de las corrientes filosóficas y políticas más originales y profundas de América Latina. No se trata de un sistema cerrado, sino de una visión ética y humanista que abarca la política, la educación, la cultura y las relaciones internacionales. Martí fue un pensador práctico, cuyas ideas nacieron de la experiencia del exilio, la lucha independentista y el contacto con las realidades sociales del continente. Su ideología se forjó en el fragor de la guerra, en la observación de la sociedad norteamericana y en el amor profundo por su tierra cubana y por toda América.
+        </div>
+        <div class="bio-text">
+            A diferencia de otros intelectuales de su tiempo, Martí no se encerró en las torres de marfil académicas. Su pensamiento se nutrió del periodismo, la poesía, la acción política y la educación. Para él, la teoría y la práctica eran inseparables: las ideas debían servir para transformar la realidad y liberar a los pueblos de la opresión.
+        </div>
+
+        <!-- EJES DEL PENSAMIENTO -->
+        <h2 class="section-title">Ejes fundamentales del pensamiento martiano</h2>
+
+        <h3 class="section-subtitle">1. Antimperialismo y soberanía</h3>
+        <div class="bio-text">
+            Martí fue uno de los primeros pensadores latinoamericanos en advertir sobre el peligro del expansionismo de Estados Unidos. En su célebre ensayo <em>Nuestra América</em> (1891), lanzó una advertencia profética: "Los pueblos de América, que han de salvarse de la tiranía del Norte". Para Martí, la independencia política no era suficiente si venía acompañada de una dependencia económica y cultural. Defendió la soberanía como un valor innegociable y alertó sobre los mecanismos sutiles de dominación que se escondían tras el discurso del progreso y el libre comercio.
+        </div>
+        <div class="bio-text">
+            Su antimperialismo no era un rechazo visceral a lo extranjero, sino una defensa de la capacidad de los pueblos latinoamericanos para decidir su propio destino. Abogó por el conocimiento de la realidad propia como antídoto contra la imitación servil de modelos foráneos. En sus crónicas sobre Estados Unidos, denunció el racismo, el consumismo y la vocación expansionista de aquella nación, y advirtió que el peligro no era solo militar, sino también cultural y económico.
+        </div>
+
+        <h3 class="section-subtitle">2. Educación liberadora</h3>
+        <div class="bio-text">
+            "Ser culto es el único modo de ser libre" – esta frase resume la convicción profunda de Martí sobre el poder transformador de la educación. No se trataba de una educación meramente instructiva, sino de una formación integral que desarrollara la conciencia crítica, la sensibilidad estética y el compromiso ético. Para Martí, la educación era la base de la emancipación social y política, la herramienta fundamental para construir ciudadanos libres y soberanos.
+        </div>
+        <div class="bio-text">
+            Creía que la educación debía llegar a todos, sin distinción de clase, raza o género. Su proyecto educativo se plasmó en <em>La Edad de Oro</em>, una revista para niños donde combinaba la enseñanza de la ciencia, la literatura y los valores de solidaridad y justicia. La escuela debía ser, en su visión, un espacio donde se forjara el carácter y se despertara el amor por la patria y por la humanidad.
+        </div>
+
+        <h3 class="section-subtitle">3. Unidad latinoamericana</h3>
+        <div class="bio-text">
+            El concepto de "Nuestra América" es una de las aportaciones más originales de Martí. Frente a la fragmentación y el caudillismo que caracterizaban a la región en el siglo XIX, Martí propuso la integración de América Latina desde el respeto a la diversidad, el reconocimiento del mestizaje y la valoración de las raíces indígenas y africanas. "Nuestra América" no era una entidad geográfica, sino un proyecto de identidad y resistencia.
+        </div>
+        <div class="bio-text">
+            Para Martí, la unidad latinoamericana no era una utopía, sino una necesidad histórica. Los pueblos de la región compartían una historia común de colonización y lucha por la independencia, y debían unirse para enfrentar las amenazas externas y construir un futuro de justicia y prosperidad. Su llamado a la integración sigue siendo un referente indispensable para los debates actuales sobre el regionalismo y la cooperación latinoamericana.
+        </div>
+
+        <h3 class="section-subtitle">4. Justicia social y antirracismo</h3>
+        <div class="bio-text">
+            Martí fue un defensor acérrimo de los derechos de los más desfavorecidos. Condenó la explotación de los trabajadores, la discriminación racial y la opresión de los campesinos. Su sensibilidad social lo llevó a escribir sobre la situación de los obreros en las fábricas, los indios en las plantaciones y los negros en las sociedades poscoloniales.
+        </div>
+        <div class="bio-text">
+            Su antirracismo era radical para su época. En un contexto donde el racismo científico estaba en auge, Martí afirmó la igualdad esencial de todos los seres humanos y denunció el racismo como una forma de injusticia y barbarie. Para él, la verdadera independencia no sería posible mientras existiera la discriminación racial. La justicia social era, en su pensamiento, inseparable de la libertad política.
+        </div>
+
+        <h3 class="section-subtitle">5. Libertad como valor supremo</h3>
+        <div class="bio-text">
+            La libertad fue el eje articulador de toda la vida y obra de Martí. Pero su concepto de libertad no se limitaba a la independencia política. Incluía la libertad de pensamiento, la libertad económica, la libertad de expresión y la libertad de conciencia. Para Martí, la libertad era un derecho inalienable y una condición necesaria para el desarrollo pleno del ser humano.
+        </div>
+        <div class="bio-text">
+            Su ideal de libertad estaba vinculado al concepto de dignidad. Una persona libre es aquella que puede vivir con honor, que puede trabajar sin opresión, que puede pensar sin censura y que puede amar sin restricciones. La lucha por la independencia de Cuba no era para Martí un fin en sí mismo, sino el medio para construir una sociedad donde la libertad fuera una realidad para todos.
+        </div>
+
+        <h3 class="section-subtitle">6. El hombre como centro del humanismo</h3>
+        <div class="bio-text">
+            Martí colocó al ser humano en el centro de su reflexión. Su pensamiento es profundamente humanista: cree en la bondad esencial de las personas, en su capacidad de perfeccionamiento y en la necesidad de una moral basada en el amor y el servicio a los demás. "El amor es la única fuerza que puede transformar el mundo", escribió en uno de sus textos.
+        </div>
+        <div class="bio-text">
+            Su humanismo se expresó en su poesía, en sus crónicas y en su acción política. Para Martí, la política debía estar al servicio del hombre, y no al revés. La revolución no era un fin en sí misma, sino un medio para crear condiciones de vida más justas y dignas. Su ética del sacrificio y su entrega a la causa independentista son un testimonio de su profundo compromiso con la humanidad.
+        </div>
+
+        <!-- NUEVA SECCIÓN: CONTEXTOS Y CORRIENTES DEL PENSAMIENTO MARTIANO -->
+        <h2 class="section-title">Contextos y corrientes del pensamiento martiano</h2>
+        <div class="bio-text">
+            El pensamiento de Martí no surgió en el vacío. Se nutrió de diversas corrientes filosóficas, políticas y literarias de su tiempo, así como de las circunstancias históricas que le tocó vivir. Comprender estas influencias ayuda a apreciar la originalidad y profundidad de su ideología.
+        </div>
+
+        <h3 class="section-subtitle">El romanticismo y el idealismo</h3>
+        <div class="bio-text">
+            Martí bebió del romanticismo literario y filosófico, especialmente en su valoración de la subjetividad, la naturaleza y el papel del artista como guía espiritual. Sin embargo, superó el romanticismo individualista al vincular la sensibilidad estética con el compromiso social y la lucha política. Su poesía no es evasión, sino acción.
+        </div>
+
+        <h3 class="section-subtitle">El liberalismo y la tradición democrática</h3>
+        <div class="bio-text">
+            Martí asimiló los principios del liberalismo clásico: la defensa de las libertades individuales, el gobierno representativo y los derechos civiles. Pero fue más allá, al denunciar que el liberalismo formal sin justicia social era una farsa. Criticó la democracia estadounidense por su racismo y su imperialismo, y propuso una democracia más participativa y solidaria.
+        </div>
+
+        <h3 class="section-subtitle">El socialismo utópico y el pensamiento de los trabajadores</h3>
+        <div class="bio-text">
+            Martí mostró interés por las ideas socialistas de su época, en particular por la crítica a la explotación capitalista. Leyó a Proudhon, a Fourier y a otros pensadores que denunciaban la desigualdad. Aunque nunca se adscribió a una escuela en particular, su defensa de los trabajadores y su crítica a la concentración de la riqueza lo acercan a las corrientes de justicia social.
+        </div>
+
+        <h3 class="section-subtitle">El pensamiento antimperialista y el nacionalismo latinoamericano</h3>
+        <div class="bio-text">
+            Martí fue pionero en formular una crítica al imperialismo estadounidense desde una perspectiva latinoamericana. Esta corriente se nutría de la tradición independentista de Simón Bolívar y de los movimientos anticoloniales del siglo XIX. Su obra <em>Nuestra América</em> es el manifiesto más acabado de este pensamiento, que unía la defensa de la soberanía con la valoración de la identidad mestiza y autóctona.
+        </div>
+
+        <h3 class="section-subtitle">El humanismo cristiano y la ética del amor</h3>
+        <div class="bio-text">
+            Martí tuvo una formación cristiana y a lo largo de su vida mantuvo una profunda espiritualidad. Sin embargo, su religiosidad fue ética y no dogmática. Su concepto del amor como fuerza transformadora y su defensa de los humildes tienen raíces en la tradición cristiana, pero las secularizó y las convirtió en pilares de su humanismo político.
+        </div>
+
+        <div class="bio-text">
+            En síntesis, Martí fue un pensador ecléctico que supo absorber las mejores ideas de su tiempo y reelaborarlas a la luz de la realidad latinoamericana. Su originalidad radica en haber creado una síntesis donde la libertad, la justicia, la educación y la identidad se articulan en un proyecto de emancipación integral.
+        </div>
+
+        <!-- INFLUENCIA Y VIGENCIA -->
+        <h2 class="section-title">Influencia y vigencia actual</h2>
+        <div class="bio-text">
+            El pensamiento de Martí ha influido en movimientos políticos y sociales de toda América Latina. Su llamado a la unidad, la resistencia antimperialista y la educación liberadora ha sido retomado por revoluciones, gobiernos progresistas y organizaciones sociales. Fidel Castro lo consideró "el autor intelectual del asalto al Cuartel Moncada" y su pensamiento ha sido una fuente de inspiración para el sandinismo, el socialismo del siglo XXI y los movimientos indígenas.
+        </div>
+        <div class="bio-text">
+            En el ámbito académico, la obra de Martí es objeto de estudio en universidades de todo el mundo. Su pensamiento ético, su defensa de los derechos humanos y su crítica al capitalismo lo convierten en un pensador de plena actualidad. Sus ideas sobre la identidad latinoamericana, la educación y la justicia social resuenan en los debates contemporáneos sobre desarrollo, democracia y soberanía.
+        </div>
+        <div class="bio-text">
+            En un mundo marcado por la globalización neoliberal, la crisis ecológica y el resurgimiento de los nacionalismos excluyentes, el pensamiento de Martí ofrece una alternativa basada en la solidaridad, la integración y el respeto a la diversidad. Su legado sigue siendo una fuente de inspiración para quienes luchan por un mundo más justo y humano.
+        </div>
+
+        <!-- CITAS DESTACADAS -->
+        <h2 class="section-title">Citas fundamentales</h2>
+        <div class="quote-block">
+            <p>“Trincheras de ideas valen más que trincheras de piedras.”</p>
+            <div class="author">— José Martí, <em>Nuestra América</em> (1891)</div>
+        </div>
+        <div class="quote-block">
+            <p>“Ser culto es el único modo de ser libre.”</p>
+            <div class="author">— José Martí, conferencia en la Sociedad Literaria Hispanoamericana (1887)</div>
+        </div>
+        <div class="quote-block">
+            <p>“Los libros consuelan, los libros calman, los libros son una ventana abierta a todos los horizontes.”</p>
+            <div class="author">— José Martí, <em>La Edad de Oro</em> (1889)</div>
+        </div>
+        <div class="quote-block">
+            <p>“Yo soy un hombre sincero, de donde crece la palma, y antes de morirme quiero echar mis versos del alma.”</p>
+            <div class="author">— José Martí, <em>Versos Sencillos</em> (1891)</div>
+        </div>
+        <div class="quote-block">
+            <p>“Con los pobres de la tierra quiero yo mi suerte echar.”</p>
+            <div class="author">— José Martí, <em>Versos Sencillos</em> (1891)</div>
+        </div>
+        <div class="quote-block">
+            <p>“El amor es la única fuerza que puede transformar el mundo.”</p>
+            <div class="author">— José Martí, fragmento de su epistolario</div>
+        </div>
+
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 Seminario de Estudios Martianos | Carlos Ernesto Ortiz Ponce. Todos los derechos reservados.</p>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> carlosernestortiz@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +53 5 592 4067</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

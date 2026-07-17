@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Línea del tiempo · José Martí · Seminario Martiano</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET Y VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-primary: #8b1a1a;
+            --red-dark: #5c0e0e;
+            --red-light: #b33a3a;
+            --red-bg: #fdf0ee;
+            --gold: #c49a6c;
+            --text-dark: #2c1e16;
+            --text-light: #f5ede6;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: #fcf9f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: #ffffff;
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--red-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+            font-family: "Georgia", serif;
+        }
+
+        .brand h1 {
+            font-family: "Georgia", serif;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: var(--red-dark);
+        }
+
+        .brand h1 span {
+            font-weight: 700;
+            color: var(--red-primary);
+        }
+
+        .brand .sub {
+            font-size: 0.7rem;
+            color: #7a5a3a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red-primary);
+            transition: width 0.25s;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .main-nav a.active {
+            color: var(--red-primary);
+        }
+
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .main-nav a.cta {
+            background: var(--red-primary);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .main-nav a.cta::after {
+            display: none;
+        }
+
+        .main-nav a.cta:hover {
+            background: var(--red-dark);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(145deg, var(--red-dark) 0%, var(--red-primary) 60%, #a32b2b 100%);
+            color: #fff;
+            padding: 3.5rem 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0 3rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-family: "Georgia", serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== SECCIONES ===== */
+        .section-title {
+            font-family: "Georgia", serif;
+            font-size: 2rem;
+            color: var(--red-dark);
+            margin: 2.5rem 0 1.5rem 0;
+            font-weight: 400;
+            border-left: 6px solid var(--red-primary);
+            padding-left: 1rem;
+        }
+
+        .intro-text {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: #3e2a1a;
+        }
+
+        /* ===== LÍNEA DE TIEMPO VERTICAL ===== */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        /* Línea central */
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--red-primary);
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+
+        /* Cada ítem de la línea */
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 2rem;
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+            padding-left: 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 2rem;
+            margin-left: 50%;
+        }
+
+        /* Círculo en la línea */
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            background: var(--red-primary);
+            border: 4px solid #fff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 3px var(--red-primary);
+            z-index: 2;
+        }
+
+        /* Tarjeta del evento */
+        .timeline-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.5rem 1.8rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #eedfce;
+            width: 85%;
+            max-width: 450px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-card .year {
+            display: inline-block;
+            font-family: "Georgia", serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--red-primary);
+            margin-bottom: 0.3rem;
+            border-bottom: 2px solid var(--red-primary);
+            padding-bottom: 0.2rem;
+        }
+
+        .timeline-card h3 {
+            font-family: "Georgia", serif;
+            font-size: 1.2rem;
+            color: var(--red-dark);
+            margin: 0.5rem 0 0.3rem 0;
+        }
+
+        .timeline-card p {
+            color: #5a4a3a;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-card .extra {
+            font-size: 0.8rem;
+            color: #7a5a3a;
+            border-top: 1px solid #f0e4d4;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== CITAS ===== */
+        .quote-block {
+            background: #ffffff;
+            border-left: 8px solid var(--red-primary);
+            padding: 1.8rem 2rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-block p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #3e2a1a;
+        }
+
+        .quote-block .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--red-dark);
+        }
+
+        /* ===== PIE DE PÁGINA ===== */
+        .main-footer {
+            background: var(--red-dark);
+            color: #f0e6dc;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-contact {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+        }
+
+        .footer-contact a {
+            color: #f0e6dc;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 800px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .main-nav {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-contact {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            /* Línea de tiempo responsive: los items se apilan a la izquierda */
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 3.5rem;
+                padding-right: 0;
+                justify-content: flex-start;
+                margin-left: 0;
+            }
+            .timeline-item:nth-child(odd) {
+                padding-left: 3.5rem;
+                padding-right: 0;
+                margin-left: 0;
+            }
+            .timeline-item::before {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+            .timeline-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            .timeline-card .year {
+                font-size: 1.3rem;
+            }
+            .timeline-card h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-icon">JM</div>
+                <div>
+                    <h1>Seminario <span>Martí</span></h1>
+                    <div class="sub">Vigencia de un pensamiento liberador</div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="main.html">Inicio</a>
+                <a href="biografia.html">Biografía</a>
+                <a href="ideologia.html">Ideología</a>
+                <a href="linea-tiempo.html" class="active">Línea de tiempo</a>
+                <a href="Descargas.html">Descargas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Línea del tiempo martiana</h2>
+                <p>Recorrido visual por los hitos más importantes de la vida y obra de José Martí.</p>
+                <p style="font-size: 1rem; opacity: 0.85;">Desde su nacimiento en La Habana hasta su caída en Dos Ríos, un viaje cronológico por su legado.</p>
+            </div>
+        </section>
+
+        <!-- INTRODUCCIÓN -->
+        <div class="intro-text">
+            Esta línea de tiempo recorre los momentos clave en la vida de José Martí, desde su nacimiento en 1853 hasta su muerte en 1895. Cada hito está acompañado de una breve descripción que contextualiza el evento y su importancia en la trayectoria del Apóstol de Cuba.
+        </div>
+
+        <!-- LÍNEA DE TIEMPO -->
+        <div class="timeline">
+
+            <!-- Evento 1 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1853</div>
+                    <h3>Nacimiento en La Habana</h3>
+                    <p>28 de enero: José Julián Martí Pérez nace en la calle Paula, en el seno de una familia humilde de origen español.</p>
+                    <div class="extra">La Habana, Capitanía General de Cuba</div>
+                </div>
+            </div>
+
+            <!-- Evento 2 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1869</div>
+                    <h3>Prisión y condena</h3>
+                    <p>Publica <em>El Diablo Cojuelo</em> y es arrestado por infidencia. Condenado a seis años de prisión y trabajos forzados en las canteras de San Lázaro.</p>
+                    <div class="extra">Tenía solo 16 años</div>
+                </div>
+            </div>
+
+            <!-- Evento 3 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1871</div>
+                    <h3>Deportación a España</h3>
+                    <p>Es deportado a España gracias a gestiones familiares. Estudia Derecho y Filosofía en Madrid y Zaragoza. Escribe <em>El presidio político en Cuba</em>.</p>
+                    <div class="extra">Inicio de su exilio europeo</div>
+                </div>
+            </div>
+
+            <!-- Evento 4 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1875</div>
+                    <h3>México y Guatemala</h3>
+                    <p>Viaja a México y luego a Guatemala, donde se desempeña como profesor de literatura y filosofía. Conoce a Carmen Zayas Bazán, su futura esposa.</p>
+                    <div class="extra">Primeros contactos con la intelectualidad latinoamericana</div>
+                </div>
+            </div>
+
+            <!-- Evento 5 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1877</div>
+                    <h3>Matrimonio y regreso a Cuba</h3>
+                    <p>Contrae matrimonio con Carmen Zayas Bazán. Regresa a Cuba bajo amnistía en 1878, pero es desterrado nuevamente en 1879.</p>
+                    <div class="extra">Nace su único hijo, José Francisco</div>
+                </div>
+            </div>
+
+            <!-- Evento 6 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1880</div>
+                    <h3>Nueva York y la lucha independentista</h3>
+                    <p>Se instala definitivamente en Nueva York. Inicia su colaboración con <em>La Nación</em> (Buenos Aires) y reorganiza a los exiliados cubanos.</p>
+                    <div class="extra">Época de mayor producción periodística</div>
+                </div>
+            </div>
+
+            <!-- Evento 7 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1882</div>
+                    <h3>Publicación de <em>Ismaelillo</em></h3>
+                    <p>Su primer poemario, dedicado a su hijo. Versos íntimos y breves que prefiguran el Modernismo.</p>
+                    <div class="extra">Primer gran paso en su carrera literaria</div>
+                </div>
+            </div>
+
+            <!-- Evento 8 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1889</div>
+                    <h3><em>La Edad de Oro</em></h3>
+                    <p>Fundación de la revista mensual para niños de América, donde publica cuentos, poemas y lecciones de vida. Incluye “Los zapaticos de rosa” y “Meñique”.</p>
+                    <div class="extra">Proyecto educativo y literario de gran trascendencia</div>
+                </div>
+            </div>
+
+            <!-- Evento 9 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1891</div>
+                    <h3><em>Versos Sencillos</em> y <em>Nuestra América</em></h3>
+                    <p>Escribe su obra poética cumbre y el ensayo que se convertiría en manifiesto del antimperialismo latinoamericano.</p>
+                    <div class="extra">“Cultivo una rosa blanca” y “Trincheras de ideas”</div>
+                </div>
+            </div>
+
+            <!-- Evento 10 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1892</div>
+                    <h3>Partido Revolucionario Cubano</h3>
+                    <p>Fundación del Partido en Cayo Hueso (Key West). Martí es elegido delegado y redacta sus Bases y Estatutos.</p>
+                    <div class="extra">Unidad de los emigrados cubanos</div>
+                </div>
+            </div>
+
+            <!-- Evento 11 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1895</div>
+                    <h3>Desembarco en Cuba y Guerra Necesaria</h3>
+                    <p>Llega a Playitas de Cajobabo el 11 de abril junto a Máximo Gómez. Inicia la guerra que busca la independencia de Cuba.</p>
+                    <div class="extra">“Llega el momento de la redención”</div>
+                </div>
+            </div>
+
+            <!-- Evento 12 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="year">1895</div>
+                    <h3>Muerte en Dos Ríos</h3>
+                    <p>19 de mayo: cae en combate contra tropas españolas. Su muerte lo convierte en mártir y símbolo de la independencia cubana.</p>
+                    <div class="extra">“Con todos, y para el bien de todos”</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CITAS DESTACADAS (NUEVAS, NO REPETIDAS) -->
+        <h2 class="section-title">Citas para recordar</h2>
+        <div class="quote-block">
+            <p>“La vida es un deber, no un placer.”</p>
+            <div class="author">— José Martí, carta a su hermana (1871)</div>
+        </div>
+        <div class="quote-block">
+            <p>“La poesía es el arte de expresar lo que el alma siente.”</p>
+            <div class="author">— José Martí, crónica periodística (1882)</div>
+        </div>
+        <div class="quote-block">
+            <p>“La verdad es el alimento del espíritu.”</p>
+            <div class="author">— José Martí, discurso en Nueva York (1889)</div>
+        </div>
+
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 Seminario de Estudios Martianos | Carlos Ernesto Ortiz Ponce. Todos los derechos reservados.</p>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> carlosernestortiz@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +53 5 592 4067</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
